@@ -2,13 +2,13 @@
 	<!-- reference task information -->
 	<Reference>
 		<Author>
-			<name>Maciej Stefańczyk</name>
+			<name>Tomasz Kornuta</name>
 			<link></link>
 		</Author>
 		
 		<Description>
-			<brief>Simple camera viewer</brief>
-			<full>Simple camera viewer</full>	
+			<brief>Image Blurer</brief>
+			<full>Task performing the bluring of images loaded from the sequence</full>	
 		</Description>
 	</Reference>
 	
@@ -17,13 +17,17 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
 				<Component name="Source" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/calibration_opencv/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.iterate">0</param>
 				</Component>
 				
-				<Component name="Processor" type="CvBasic:CvThreshold" priority="1" bump="0">
+				<Component name="GaussianBlur" type="CvBasic:CvGaussianBlur" priority="1" bump="0">
+					<param name="kernel.width">0</param>
+					<param name="kernel.height">0</param>
+					<param name="sigma.x">5.001</param>
+					<param name="sigma.y">5.001</param>
 				</Component>
 			</Executor>
 		</Subtask>
@@ -42,9 +46,9 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">
-			<sink>Processor.in_img</sink>		
+			<sink>GaussianBlur.in_img</sink>		
 		</Source>
-		<Source name="Processor.out_img">
+		<Source name="GaussianBlur.out_img">
 			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>
