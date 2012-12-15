@@ -3,6 +3,7 @@ ecovi - DisCODe Component Library
 
 Description
 -----------
+DCL containing tutorials for ECOVI
 
 Fill this section with description of this library.
 
