@@ -7,8 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:Blur</brief>
-			<full>Task performing the bluring of images loaded from the sequence</full>	
+			<brief>ecovi:ColourClassification</brief>
+			<full>Task performing the colour classification in the RGB colour space</full>	
 		</Description>
 	</Reference>
 	
@@ -17,17 +17,13 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/opencv_classics/</param>
-					<param name="sequence.pattern">.*\.jpg</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/blueball/</param>
+					<param name="sequence.pattern">.*\.png</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.iterate">0</param>
 				</Component>
 				
-				<Component name="GaussianBlur" type="CvBasic:CvGaussianBlur" priority="1" bump="0">
-					<param name="kernel.width">0</param>
-					<param name="kernel.height">0</param>
-					<param name="sigma.x">5.001</param>
-					<param name="sigma.y">5.001</param>
+				<Component name="RGBClassifier" type="CvBasic:RGBLUT" priority="2" bump="0">
 				</Component>
 			</Executor>
 		</Subtask>
@@ -35,8 +31,8 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">1</param>
-					<param name="title">Okienko</param>
+					<param name="count">2</param>
+					<param name="title">Original,Result</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -46,9 +42,10 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Sequence.out_img">
-			<sink>GaussianBlur.in_img</sink>		
+			<sink>RGBClassifier.in_img</sink>		
+			<sink>Window.in_img</sink>		
 		</Source>
-		<Source name="GaussianBlur.out_img">
+		<Source name="RGBClassifier.out_img">
 			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>

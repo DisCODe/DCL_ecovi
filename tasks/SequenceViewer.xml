@@ -7,8 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>Simple camera viewer</brief>
-			<full>Simple camera viewer</full>	
+			<brief>ecovi:SequenceViewer</brief>
+			<full>Loads and displays a sequence of images</full>	
 		</Description>
 	</Reference>
 	
@@ -16,7 +16,7 @@
 	<Subtasks>
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
-				<Component name="Source" type="CvBasic:Sequence" priority="1" bump="0">
+				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="0">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
@@ -38,7 +38,7 @@
 	
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
-		<Source name="Source.out_img">
+		<Source name="Sequence.out_img">
 			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>

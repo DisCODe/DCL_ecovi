@@ -7,8 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>Simple camera viewer</brief>
-			<full>Simple camera viewer</full>	
+			<brief>ecovi:Threshold</brief>
+			<full>Example of image thresholding</full>	
 		</Description>
 	</Reference>
 	
@@ -16,7 +16,7 @@
 	<Subtasks>
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
-				<Component name="Source" type="CvBasic:Sequence" priority="1" bump="1">
+				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/calibration_opencv/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
@@ -41,7 +41,7 @@
 	
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
-		<Source name="Source.out_img">
+		<Source name="Sequence.out_img">
 			<sink>Processor.in_img</sink>		
 		</Source>
 		<Source name="Processor.out_img">
