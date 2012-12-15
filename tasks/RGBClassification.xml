@@ -7,7 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:ColourClassification</brief>
+			<tag>ecovi:RGBClassification</tag>
+			<brief>Classification in the RGB colour space</brief>
 			<full>Task performing the colour classification in the RGB colour space</full>	
 		</Description>
 	</Reference>
@@ -17,10 +18,9 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/blueball/</param>
-					<param name="sequence.pattern">.*\.png</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/opencv_classics/</param>
+					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
-					<param name="mode.iterate">0</param>
 				</Component>
 				
 				<Component name="RGBClassifier" type="CvBasic:RGBLUT" priority="2" bump="0">
@@ -43,10 +43,10 @@
 	<DataStreams>
 		<Source name="Sequence.out_img">
 			<sink>RGBClassifier.in_img</sink>		
-			<sink>Window.in_img</sink>		
+			<sink>Window.in_img0</sink>		
 		</Source>
 		<Source name="RGBClassifier.out_img">
-			<sink>Window.in_img</sink>		
+			<sink>Window.in_img1</sink>		
 		</Source>
 	</DataStreams>
 </Task>

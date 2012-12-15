@@ -23,7 +23,7 @@
 					<param name="mode.iterate">0</param>
 				</Component>
 				
-				<Component name="Processor" type="CvBasic:CvThreshold" priority="1" bump="0">
+				<Component name="Processor" type="CvBasic:CvThreshold" priority="2" bump="0">
 				</Component>
 			</Executor>
 		</Subtask>

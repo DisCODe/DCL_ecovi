@@ -7,8 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:Blur</brief>
-			<full>Task performing the bluring of images loaded from the sequence</full>	
+			<brief>ecovi:Morphology</brief>
+			<full>Task performing the morphological operations on the images loaded from the sequence</full>	
 		</Description>
 	</Reference>
 	
@@ -17,17 +17,13 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/opencv_classics/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/calibration_opencv/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.iterate">0</param>
 				</Component>
 				
-				<Component name="GaussianBlur" type="CvBasic:CvGaussianBlur" priority="2" bump="0">
-					<param name="kernel.width">0</param>
-					<param name="kernel.height">0</param>
-					<param name="sigma.x">5.001</param>
-					<param name="sigma.y">5.001</param>
+				<Component name="Morphology" type="CvBasic:CvMorphology" priority="2" bump="0">
 				</Component>
 			</Executor>
 		</Subtask>
@@ -46,9 +42,9 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Sequence.out_img">
-			<sink>GaussianBlur.in_img</sink>		
+			<sink>Morphology.in_img</sink>		
 		</Source>
-		<Source name="GaussianBlur.out_img">
+		<Source name="Morphology.out_img">
 			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>
