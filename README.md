@@ -9,10 +9,11 @@ Dependencies
 ------------
 
 To run the tutorials components from several DCLs are required, including:
-CvCoreTypes, CvBasic, 
+CvCoreTypes, CvBasic
 
 Maintainer
 ----------
 
 Tomasz Kornuta
+
 WUT
