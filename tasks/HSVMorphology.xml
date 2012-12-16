@@ -14,11 +14,11 @@
 	
 	<!-- task definition -->
 	<Subtasks>
-		<Subtask name="Processing">
-			<Executor name="Exec1"  period="1">
+		<Subtask name="Main">
+			<Executor name="Processing"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../data/opencv_classics/</param>
-					<param name="sequence.pattern">.*\.jpg</param>
+					<param name="sequence.pattern">baboon\.jpg</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.iterate">0</param>
 				</Component>
@@ -36,10 +36,8 @@
 					<param name="iterations">0</param>
 				</Component>
 			</Executor>
-		</Subtask>
-		
-		<Subtask name="Visualisation">
-			<Executor name="Exec2" period="0.2">
+
+			<Executor name="Visualization" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">2</param>
 					<param name="title">Original,Result</param>
