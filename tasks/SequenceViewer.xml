@@ -17,13 +17,13 @@
 		<Subtask name="Main">
 			<Executor name="Processing"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../../data/opencv_classics/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
 				</Component>
-				
 			</Executor>
-			<Executor name="Visualisation" period="0.2">
+
+			<Executor name="Visualization" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="5">
 					<param name="count">1</param>
 					<param name="title">Window</param>
