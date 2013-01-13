@@ -7,8 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:HSVClassification</brief>
-			<full>Task performing the colour classification in the HSV colour space</full>	
+			<brief>ecovi:Edge1D</brief>
+			<full>Task performing the extraction of vertical or horizontal edges</full>	
 		</Description>
 	</Reference>
 	
@@ -17,23 +17,23 @@
 		<Subtask name="Main">
 			<Executor name="Processing"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../data/opencv_classics/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
+					<param name="mode.iterate">0</param>
+					<param name="mode.triggered">0</param>
 				</Component>
 				
-				<Component name="ColorConverter" type="CvBasic:CvColorConv" priority="2" bump="0">
-					<param name="type">RGB2HSV</param>
-				</Component>
-
-				<Component name="HSVClassifier" type="CvBasic:HSVLUT" priority="3" bump="0">
+				<Component name="Filter2D" type="CvBasic:CvFilter2D" priority="2" bump="0">
+					<param name="kernel">0 0 0; 0 1 0; 0 0 0</param>
+					<param name="norm">1</param>
 				</Component>
 			</Executor>
 
 			<Executor name="Visualization" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">2</param>
-					<param name="title">Original,Result</param>
+					<param name="title">Original, Result</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -43,13 +43,10 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Sequence.out_img">
-			<sink>ColorConverter.in_img</sink>		
+			<sink>Filter2D.in_img</sink>		
 			<sink>Window.in_img0</sink>		
 		</Source>
-		<Source name="ColorConverter.out_img">
-			<sink>HSVClassifier.in_img</sink>		
-		</Source>
-		<Source name="HSVClassifier.out_img">
+		<Source name="Filter2D.out_img">
 			<sink>Window.in_img1</sink>		
 		</Source>
 	</DataStreams>
