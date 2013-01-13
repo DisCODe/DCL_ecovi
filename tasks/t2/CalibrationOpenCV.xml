@@ -15,7 +15,7 @@
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Processing">
-			<Executor name="Exec1"  period="1">
+			<Executor name="Exec1"  period="0.1">
 				<Component name="Source" type="CvBasic:Sequence" priority="1" bump="0">
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/calibration_opencv/</param>
