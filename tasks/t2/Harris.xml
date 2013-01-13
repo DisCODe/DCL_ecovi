@@ -1,0 +1,62 @@
+<Task>
+	<!-- reference task information -->
+	<Reference>
+		<Author>
+			<name>Tomasz Kornuta</name>
+			<link></link>
+		</Author>
+		
+		<Description>
+			<brief>ecovi:Harris</brief>
+			<full>Task presnting the results of operation of the Harris corner detector</full>	
+		</Description>
+	</Reference>
+	
+	<!-- task definition -->
+	<Subtasks>
+		<Subtask name="Main">
+			<Executor name="Processing"  period="1">
+				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_classics/</param>
+					<param name="sequence.pattern">.*\.jpg</param>
+					<param name="mode.loop">1</param>
+					<param name="mode.iterate">0</param>
+				</Component>
+				
+				<Component name="ColorConverter" type="CvBasic:CvColorConv" priority="2" bump="0">
+					<param name="type">BGR2GRAY</param>
+				</Component>
+
+				<Component name="Harris" type="CvBasic:CvHarris" priority="4" bump="0">
+				</Component>
+			</Executor>
+
+			<Executor name="Visualization" period="0.2">
+				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
+					<param name="count">2</param>
+					<param name="title">Original,Result</param>
+				</Component>
+			</Executor>
+		</Subtask>	
+	
+	</Subtasks>
+	
+	<!-- pipes connecting datastreams -->
+	<DataStreams>
+		<Source name="Sequence.out_img">
+			<sink>ColorConverter.in_img</sink>		
+			<sink>Window.in_img0</sink>		
+		</Source>
+		<Source name="ColorConverter.out_img">
+			<sink>Harris.in_img</sink>		
+		</Source>
+				
+		<Source name="Harris.out_img">
+			<sink>Window.in_img1</sink>		
+		</Source>
+	</DataStreams>
+</Task>
+
+
+
+
