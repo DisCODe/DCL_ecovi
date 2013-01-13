@@ -16,16 +16,12 @@
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Processing">
-			<Executor name="Exec1"  period="0.2">
+			<Executor name="Exec1"  period="0.1">
 				<Component name="Source" type="CameraNUI:CameraNUI" priority="1" bump="0">
 					<param name="lib">freenect</param>
 					<param name="skip_stop">1</param>
 					<param name="camera_mode">rgb</param>
 					<param name="sync">1</param>
-				</Component>
-				
-				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="2" bump="0">
-					<param name="depth_mode">rainbow</param>
 				</Component>
 				
 				<Component name="ColorConverter" type="CvBasic:CvColorConv" priority="3" bump="0">
@@ -44,8 +40,8 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">4</param>
-					<param name="title">RGB,Harris,SIFT,Rainbow</param>
+					<param name="count">3</param>
+					<param name="title">RGB,Harris,SIFT</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -76,13 +72,6 @@
 			<sink>Window.in_img2</sink>		
 		</Source>
 
-
-		<Source name="Source.out_depth">
-			<sink>ProcRain.in_depth</sink>
-		</Source>
-		<Source name="ProcRain.out_depth">
-			<sink>Window.in_img3</sink>		
-		</Source>
 	</DataStreams>
 </Task>
 

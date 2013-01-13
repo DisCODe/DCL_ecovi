@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<tag>ecovi:RGBClassification</tag>
+			<tag>ecovi:t1/RGBClassification</tag>
 			<brief>Classification in the RGB colour space</brief>
 			<full>Task performing the colour classification in the RGB colour space</full>	
 		</Description>

@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:Morphology</brief>
+			<brief>ecovi:t1/Morphology</brief>
 			<full>Task performing the morphological operations on the images loaded from the sequence</full>	
 		</Description>
 	</Reference>

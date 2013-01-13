@@ -7,8 +7,8 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:HSVClassification</brief>
-			<full>Task performing the colour classification in the HSV colour space</full>	
+			<brief>ecovi:t2/Canny</brief>
+			<full>Task using the Canny operator for edges detection</full>	
 		</Description>
 	</Reference>
 	

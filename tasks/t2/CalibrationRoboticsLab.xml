@@ -2,30 +2,31 @@
 	<!-- reference task information -->
 	<Reference>
 		<Author>
-			<name>Maciej Stefańczyk</name>
+			<name>Maciej Stefańczyk, Tomasz Kornuta</name>
 			<link></link>
 		</Author>
 		
 		<Description>
-			<brief>Simple camera viewer</brief>
-			<full>Simple camera viewer</full>	
+			<brief>ecovi:t2/CalibrationRoboticsLab</brief>
+			<full>Task for calibration of the camera basing on the image dataset acquired from the one of our cameras</full>	
 		</Description>
 	</Reference>
 	
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Processing">
-			<Executor name="Exec1"  period="1">
+			<Executor name="Exec1"  period="0.1">
 				<Component name="Source" type="CvBasic:Sequence" priority="1" bump="0">
 					<param name="sequence.pattern">.*\.jpeg</param>
-					<param name="sequence.directory">%[TASK_LOCATION]%/../data/chessboard/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/calibration_robotics_lab/</param>
 					<param name="mode.loop">1</param>
+					<param name="mode.iterate">0</param>
 				</Component>
 								
 				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
 					<param name="width">768</param>
 					<param name="height">576</param>
-					<param name="camera_matrix">1 0 384 ; 0 1 288 ; 0 0 1</param>
+					<param name="camera_matrix">1 0 0 ; 0 1 0 ; 0 0 1</param>
 					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
 				</Component>
 				
@@ -54,7 +55,8 @@
 			<Executor name="Exec2" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">1</param>
-					<param name="title">Okienko</param>
+					<param name="count">2</param>
+					<param name="title">Original,Undistorted</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -65,24 +67,26 @@
 	<DataStreams>
 		<Source name="Source.out_img">
 			<sink>Undistort.in_img</sink>		
+			<sink>ColorConv.in_img</sink>
+			<sink>Window.in_img0</sink>		
 		</Source>
 		<Source name="CameraInfo.out_camerainfo">
 			<sink>Undistort.in_camerainfo</sink>
 			<sink>Calib.in_camerainfo</sink>
 		</Source>
-		<Source name="Undistort.out_img">
-			<sink>ColorConv.in_img</sink>
-			<sink>Window.in_img</sink>		
-		</Source>
+
 		<Source name="ColorConv.out_img">
 			<sink>Chessboard.in_img</sink>
 		</Source>
 		<Source name="Chessboard.out_chessboard">
-			<sink>Window.in_draw</sink>
+			<sink>Window.in_draw0</sink>
 			<sink>Calib.in_chessboard</sink>		
 		</Source>
 		<Source name="Calib.out_camerainfo">
 			<sink>CameraInfo.in_camerainfo</sink>
+		</Source>
+		<Source name="Undistort.out_img">
+			<sink>Window.in_img1</sink>		
 		</Source>
 	</DataStreams>
 </Task>

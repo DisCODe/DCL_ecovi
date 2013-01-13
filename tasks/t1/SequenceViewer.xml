@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:SequenceViewer</brief>
+			<brief>ecovi:t1/SequenceViewer</brief>
 			<full>Loads and displays a sequence of images</full>	
 		</Description>
 	</Reference>

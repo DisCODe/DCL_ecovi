@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:HSVClassification</brief>
+			<brief>ecovi:t1/HSVClassification</brief>
 			<full>Task performing the colour classification in the HSV colour space</full>	
 		</Description>
 	</Reference>

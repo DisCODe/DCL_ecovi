@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:HSVMorphology</brief>
+			<brief>ecovi:t1/HSVMorphology</brief>
 			<full>Task performing the morhology on the image with colours already classified in the HSV space</full>	
 		</Description>
 	</Reference>

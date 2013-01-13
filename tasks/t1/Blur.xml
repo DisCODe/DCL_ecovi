@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:Blur</brief>
+			<brief>ecovi:t1/Blur</brief>
 			<full>Task performing the bluring of images loaded from the sequence</full>	
 		</Description>
 	</Reference>
