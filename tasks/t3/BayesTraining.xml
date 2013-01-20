@@ -17,7 +17,7 @@
 		<Subtask name="Main">
 			<Executor name="Processing"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/letters/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/letters/a/</param>
 					<param name="sequence.pattern">.*\.png</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.iterate">0</param>
@@ -31,12 +31,22 @@
 					<param name="red.threshold.high">135</param>
 					<param name="red.threshold.low">0</param>
 				</Component>
+
+				<Component name="Contour" type="CvBasic:CvContour" priority="4" bump="0">
+				</Component>
+
+				<Component name="Moments" type="CvBasic:CvMoments" priority="5" bump="0">
+				</Component>
+
+				<Component name="Bayes" type="CvBasic:CvBayesClassifier" priority="6" bump="1">
+				</Component>
+
 			</Executor>
 
 			<Executor name="Visualization" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">Original,Binary</param>
+					<param name="count">3</param>
+					<param name="title">Original,Binary,Contour</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -51,7 +61,20 @@
 		</Source>
 		<Source name="RGBClassifier.out_img">
 			<sink>Window.in_img1</sink>		
+			<sink>Contour.in_img</sink>		
 		</Source>
+
+		<Source name="Contour.out_contours">
+			<sink>Moments.in_contours</sink>		
+		</Source>
+		<Source name="Contour.out_img">
+			<sink>Window.in_img2</sink>		
+		</Source>
+		
+		<Source name="Moments.out_moments">
+			<sink>Bayes.in_moments</sink>		
+		</Source>
+		
 	</DataStreams>
 </Task>
 
