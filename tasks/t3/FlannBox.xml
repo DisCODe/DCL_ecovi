@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Task>
+	<!-- reference task information -->
+	<Reference>
+		<Author>
+			<name>Tomasz Kornuta</name>
+			<link></link>
+		</Author>
+		
+		<Description>
+			<brief>ecovi:t3/FlannBox</brief>
+			<full>Task presenting the results of feature matching with the use of OpenCV's FLANN</full>	
+		</Description>
+	</Reference>
+	
+	<!-- task definition -->
+	<Subtasks>
+		<Subtask name="Processing">
+			<Executor name="Exec1"  period="0.1">
+				<Component name="Source0" type="CvBasic:Sequence" priority="1" bump="0">
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_other/</param>
+					<param name="sequence.pattern">box.png</param>
+					<param name="mode.loop">0</param>
+					<param name="mode.iterate">0</param>
+				</Component>
+				<Component name="Source1" type="CvBasic:Sequence" priority="2" bump="0">
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_other/</param>
+					<param name="sequence.pattern">box_in_scene.png</param>
+					<param name="mode.loop">0</param>
+					<param name="mode.iterate">0</param>
+				</Component>
+				
+				<Component name="SIFT0" type="CvBasic:CvSURF" priority="3" bump="0">
+				</Component>
+
+				<Component name="SIFT1" type="CvBasic:CvSURF" priority="4" bump="0">
+				</Component>
+
+				<Component name="Flann" type="CvBasic:CvFlann" priority="5" bump="0">
+				</Component>
+				
+			</Executor>
+		</Subtask>
+		
+		<Subtask name="Visualisation">
+			<Executor name="Exec2" period="0.01">
+				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
+					<param name="count">3</param>
+					<param name="title">Image0,Image1,Matching</param>
+				</Component>
+			</Executor>
+		</Subtask>	
+	
+	</Subtasks>
+	
+	<!-- connections between events and handelrs -->
+	<Events>
+	</Events>
+	
+	<!-- pipes connecting datastreams -->
+	<DataStreams>
+		<Source name="Source0.out_img">
+			<sink>SIFT0.in_img</sink>		
+			<sink>Flann.in_img0</sink>		
+			<sink>Window.in_img0</sink>		
+		</Source>
+
+		<Source name="Source1.out_img">
+			<sink>SIFT1.in_img</sink>		
+			<sink>Flann.in_img1</sink>		
+			<sink>Window.in_img1</sink>		
+		</Source>
+				
+		<Source name="SIFT0.out_features">
+			<sink>Flann.in_features0</sink>		
+			<sink>Window.in_draw0</sink>		
+		</Source>
+
+		<Source name="SIFT0.out_descriptors">
+			<sink>Flann.in_descriptors0</sink>		
+		</Source>
+
+		<Source name="SIFT1.out_features">
+			<sink>Flann.in_features1</sink>		
+			<sink>Window.in_draw1</sink>		
+		</Source>
+				
+		<Source name="SIFT1.out_descriptors">
+			<sink>Flann.in_descriptors1</sink>		
+		</Source>
+		
+		<Source name="Flann.out_img">
+			<sink>Window.in_img2</sink>		
+		</Source>
+
+	</DataStreams>
+</Task>
+
+
+
+

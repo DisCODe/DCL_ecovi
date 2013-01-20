@@ -33,8 +33,8 @@
 
 			<Executor name="Visualization" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">Original,Result</param>
+					<param name="count">1</param>
+					<param name="title">SIFT</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -51,8 +51,8 @@
 			<sink>SIFT.in_img</sink>		
 		</Source>
 				
-		<Source name="SIFT.out_img">
-			<sink>Window.in_img1</sink>		
+		<Source name="SIFT.out_features">
+			<sink>Window.in_draw0</sink>		
 		</Source>
 	</DataStreams>
 </Task>

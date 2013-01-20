@@ -8,8 +8,8 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:t2/FeatureComparison</brief>
-			<full>Task for comparison of Harris and SIFT features</full>	
+			<brief>ecovi:t2/FlannBix</brief>
+			<full>Task presenting the results of feature matching with the use of OpenCV's FLANN</full>	
 		</Description>
 	</Reference>
 	
@@ -33,9 +33,6 @@
 
 				<Component name="Harris" type="CvBasic:CvHarris" priority="5" bump="0">
 				</Component>
-
-				<Component name="SURF" type="CvBasic:CvSURF" priority="5" bump="0">
-				</Component>
 				
 			</Executor>
 		</Subtask>
@@ -44,7 +41,7 @@
 			<Executor name="Exec2" period="0.01">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">3</param>
-					<param name="title">Harris,SIFT,SURF</param>
+					<param name="title">RGB,Harris,SIFT</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -60,26 +57,19 @@
 		<Source name="Source.out_img">
 			<sink>ColorConverter.in_img</sink>		
 			<sink>Window.in_img0</sink>		
-			<sink>Window.in_img1</sink>		
-			<sink>Window.in_img2</sink>		
 		</Source>
 
 		<Source name="ColorConverter.out_img">
 			<sink>Harris.in_img</sink>		
 			<sink>SIFT.in_img</sink>		
-			<sink>SURF.in_img</sink>		
 		</Source>
 				
-		<Source name="Harris.out_features">
-			<sink>Window.in_draw0</sink>		
+		<Source name="Harris.out_img">
+			<sink>Window.in_img1</sink>		
 		</Source>
 				
-		<Source name="SIFT.out_features">
-			<sink>Window.in_draw1</sink>		
-		</Source>
-
-		<Source name="SURF.out_features">
-			<sink>Window.in_draw2</sink>		
+		<Source name="SIFT.out_img">
+			<sink>Window.in_img2</sink>		
 		</Source>
 
 	</DataStreams>

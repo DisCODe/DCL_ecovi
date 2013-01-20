@@ -15,7 +15,7 @@
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Main">
-			<Executor name="Processing"  period="1">
+			<Executor name="Processing"  period="0.1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
@@ -33,8 +33,8 @@
 
 			<Executor name="Visualization" period="0.2">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">Original,Result</param>
+					<param name="count">1</param>
+					<param name="title">Harris</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -51,8 +51,8 @@
 			<sink>Harris.in_img</sink>		
 		</Source>
 				
-		<Source name="Harris.out_img">
-			<sink>Window.in_img1</sink>		
+		<Source name="Harris.out_features">
+			<sink>Window.in_draw0</sink>		
 		</Source>
 	</DataStreams>
 </Task>
