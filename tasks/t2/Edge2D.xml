@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:Edge1D</brief>
+			<brief>ecovi:t2/Edge1D</brief>
 			<full>Task performing the extraction of vertical or horizontal edges</full>	
 		</Description>
 	</Reference>

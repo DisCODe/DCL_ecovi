@@ -7,7 +7,7 @@
 		</Author>
 		
 		<Description>
-			<brief>ecovi:SIFT</brief>
+			<brief>ecovi:t2/SIFT</brief>
 			<full>Task presnting the results of operation of the Scale Invariant Feature Transform (SIFT) </full>	
 		</Description>
 	</Reference>
