@@ -44,6 +44,8 @@
 				</Component>
 
 				<Component name="Flann" type="CvBasic:CvFlann" priority="5" bump="1">
+					<param name="recalculate_distance">0</param>
+					<param name="print_stats">0</param>
 				</Component>
 				
 			</Executor>
