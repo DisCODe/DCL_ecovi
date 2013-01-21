@@ -19,7 +19,7 @@
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/letters/a/</param>
 					<param name="sequence.pattern">.*\.png</param>
-					<param name="mode.loop">1</param>
+					<param name="mode.loop">0</param>
 					<param name="mode.iterate">0</param>
 				</Component>
 				
@@ -38,7 +38,8 @@
 				<Component name="Moments" type="CvBasic:CvMoments" priority="5" bump="0">
 				</Component>
 
-				<Component name="Bayes" type="CvBasic:CvBayesClassifier" priority="6" bump="1">
+				<Component name="Bayes" type="CvBasic:CvBayesClassifier" priority="6" bump="0">
+					<param name="filename">bayes.yml</param>
 				</Component>
 
 			</Executor>
