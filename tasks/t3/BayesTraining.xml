@@ -17,10 +17,10 @@
 		<Subtask name="Main">
 			<Executor name="Processing"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/letters/a/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/letters/training_a/</param>
 					<param name="sequence.pattern">.*\.png</param>
-					<param name="mode.loop">0</param>
-					<param name="mode.iterate">0</param>
+					<param name="mode.loop">1</param>
+					<param name="mode.iterate">1</param>
 				</Component>
 				
 				<Component name="RGBClassifier" type="CvBasic:RGBLUT" priority="2" bump="0">
