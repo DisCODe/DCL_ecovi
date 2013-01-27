@@ -40,6 +40,7 @@
 
 				<Component name="Bayes" type="CvBasic:CvBayesClassifier" priority="6" bump="0">
 					<param name="filename">bayes.yml</param>
+					<param name="Classifier.Spatial moments">0</param>
 				</Component>
 
 			</Executor>
