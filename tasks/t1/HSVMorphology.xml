@@ -17,7 +17,7 @@
 		<Subtask name="Main">
 			<Executor name="Processing"  period="1">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_classics/</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../data/opencv_classics/</param>
 					<param name="sequence.pattern">baboon\.jpg</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.iterate">0</param>
