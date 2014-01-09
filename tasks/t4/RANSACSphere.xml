@@ -26,8 +26,15 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
-				<Component name="Window" type="PCL:CloudViewer" priority="1" bump="0">
-				</Component>
+<!--				<Component name="GeneratedCloud" type="PCL:CloudViewer" priority="1" bump="0">
+          <param name="window_name">GeneratedCloud</param>
+        </Component> -->
+				<Component name="Inliers" type="PCL:CloudViewer" priority="2" bump="0">
+          <param name="window_name">Inliers - sphere</param>
+        </Component>
+        <Component name="Outliers" type="PCL:CloudViewer" priority="3" bump="0">
+          <param name="window_name">Outliers</param> 
+        </Component>
 			</Executor>
 		</Subtask>
 	
@@ -42,11 +49,11 @@
 		<Source name="Source.out_pcl">
 			<sink>RANSAC.in_pcl</sink>
 		</Source>
-<!--		<Source name="Source.out_pcl_ptr">
-			<sink>Window.in_cloud_xyz</sink>
-		</Source>-->
 		<Source name="RANSAC.out_outliers">
-			<sink>Window.in_cloud_xyz</sink>
+			<sink>Outliers.in_cloud_xyz</sink>
+		</Source>
+			<Source name="RANSAC.out_inliers">
+			<sink>Inliers.in_cloud_xyz</sink>
 		</Source>
 	</DataStreams>
 </Task>

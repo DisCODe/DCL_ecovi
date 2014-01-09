@@ -3,13 +3,13 @@
 	<!-- reference task information -->
 	<Reference>
 		<Author>
-			<name>Maciej Stefańczyk</name>
+			<name>Tomasz Kornuta</name>
 			<link></link>
 		</Author>
 		
 		<Description>
-			<brief>Simple PCL viewer</brief>
-			<full>Simple PCL viewer, using PCD as source of depth data.</full>	
+			<brief>RANSAC plane fitting</brief>
+			<full>Component realizing selection of the points constituting a plane with the use of Random Sample Consensus.</full>	
 		</Description>
 	</Reference>
 	
@@ -26,8 +26,16 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
-<!--				<Component name="GeneratedCloud" type="PCL:CloudViewer" priority="1" bump="0"/> -->
-				<Component name="PlaneCloud" type="PCL:CloudViewer" priority="1" bump="0"/> 
+			  <Component name="GeneratedCloud" type="PCL:CloudViewer" priority="1" bump="0">
+          <param name="window_name">GeneratedCloud</param>
+        </Component>
+				<Component name="Inliers" type="PCL:CloudViewer" priority="2" bump="0"> 
+          <param name="window_name">Inliers - plane</param>
+        </Component>
+       <Component name="Outliers" type="PCL:CloudViewer" priority="3" bump="0">
+          <param name="window_name">Outliers</param>
+        </Component>
+	         
 			</Executor>
 		</Subtask>
 	
@@ -41,12 +49,15 @@
 	<DataStreams>
 		<Source name="Source.out_pcl">
 			<sink>RANSAC.in_pcl</sink>
-<!--			<sink>GeneratedCloud.in_cloud_xyz</sink> -->
+			<sink>GeneratedCloud.in_cloud_xyz</sink> 
 		</Source>
 		<Source name="RANSAC.out_inliers">
-			<sink>PlaneCloud.in_cloud_xyz</sink>
+			<sink>Inliers.in_cloud_xyz</sink>
 		</Source>
-	</DataStreams>
+		<Source name="RANSAC.out_outliers">
+			<sink>Outliers.in_cloud_xyz</sink>
+		</Source>
+		</DataStreams>
 </Task>
 
 
