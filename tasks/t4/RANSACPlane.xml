@@ -26,8 +26,8 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
-				<Component name="Window" type="PCL:CloudViewer" priority="1" bump="0">
-				</Component>
+				<Component name="GeneratedCloud" type="PCL:CloudViewer" priority="1" bump="0"/>
+				<Component name="PlaneCloud" type="PCL:CloudViewer" priority="1" bump="0"/>
 			</Executor>
 		</Subtask>
 	
@@ -41,12 +41,10 @@
 	<DataStreams>
 		<Source name="Source.out_pcl">
 			<sink>RANSAC.in_pcl</sink>
+			<sink>GeneratedCloud.in_cloud_xyz</sink>
 		</Source>
-<!--		<Source name="Source.out_pcl_ptr">
-			<sink>Window.in_cloud_xyz</sink>
-		</Source>-->
 		<Source name="RANSAC.out_inliers">
-			<sink>Window.in_cloud_xyz</sink>
+			<sink>PlaneCloud.in_cloud_xyz</sink>
 		</Source>
 	</DataStreams>
 </Task>
