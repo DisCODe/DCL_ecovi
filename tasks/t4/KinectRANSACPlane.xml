@@ -31,9 +31,9 @@
 		</Subtask>
 		
 		<Subtask name="Visualisation">
-			<Executor name="Exec2" period="0.01">
-				<Component name="KinectCloud" type="PCL:CloudViewer" priority="1" bump="0"/>
-				<Component name="PlaneCloud" type="PCL:CloudViewer" priority="1" bump="0"/>
+			<Executor name="Exec2" period="0.25">
+<!--				<Component name="KinectCloud" type="PCL:CloudViewer" priority="1" bump="0"/> -->
+				<Component name="PlaneCloud" type="PCL:CloudViewer" priority="2" bump="0"/>
 			</Executor>
 		</Subtask>
 	
@@ -53,7 +53,7 @@
 		</Source>
 		<Source name="Converter.out_cloud_xyz">
 			<sink>RANSAC.in_pcl</sink>
-			<sink>KinectCloud.in_cloud_xyz</sink>
+<!--			<sink>KinectCloud.in_cloud_xyz</sink> -->
 		</Source>
 		<Source name="RANSAC.out_inliers">
 			<sink>PlaneCloud.in_cloud_xyz</sink>
