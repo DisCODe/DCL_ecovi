@@ -32,8 +32,8 @@
 
 				<Component name="RANSAC" type="PCL:RANSACPlane" priority="3" bump="0">
 				</Component>
-				<Component name="ClusterExtraction" type="PCL:ClusterExtraction" priority="4" bump="0">
-				</Component>
+<!--				<Component name="ClusterExtraction" type="PCL:ClusterExtraction" priority="4" bump="0"> 
+				</Component> -->
 
 			</Executor>
 		</Subtask>
@@ -67,7 +67,7 @@
 		</Source>
 	  <Source name="RANSAC.out_outliers">
 			<sink>Cluster.in_cloud_xyz</sink>
-			<sink>ClusterExtraction.in_pcl</sink>
+<!--			<sink>ClusterExtraction.in_pcl</sink> -->
 		</Source>
 	</DataStreams>
 </Task>
