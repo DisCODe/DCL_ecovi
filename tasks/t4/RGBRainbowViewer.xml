@@ -3,13 +3,13 @@
 	<!-- reference task information -->
 	<Reference>
 		<Author>
-			<name>Tomasz Kornuta</name>
+			<name>Maciej Stefańczyk</name>
 			<link></link>
 		</Author>
 		
 		<Description>
 			<brief>Simple Kinect viewer</brief>
-			<full>Displays two windows with RGB and depth immges.</full>	
+			<full>Simple Kinect viewer, shows possible depth conversions.</full>	
 		</Description>
 	</Reference>
 	
@@ -26,7 +26,7 @@
 				
 				
 				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="1" bump="0">
-					<param name="depth_mode">rawMap</param>
+					<param name="depth_mode">rainbow</param>
 				</Component>
 				
 			</Executor>
@@ -36,7 +36,7 @@
 			<Executor name="Exec2" period="0.01">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">2</param>
-					<param name="title">RGB,rawMap</param>
+					<param name="title">RGB,Rainbow</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -53,14 +53,11 @@
 			<sink>Window.in_img0</sink>		
 		</Source>
 		<Source name="Source.out_depth">
-			<sink>Window.in_depth</sink>
-		</Source>
-<!--		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
 		</Source>
 		<Source name="ProcRain.out_depth">
 			<sink>Window.in_img1</sink>		
-		</Source> -->
+		</Source>
 	</DataStreams>
 </Task>
 
