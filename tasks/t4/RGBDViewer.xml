@@ -53,7 +53,7 @@
 			<sink>Window.in_img0</sink>		
 		</Source>
 		<Source name="Source.out_depth">
-			<sink>Window.in_depth</sink>
+			<sink>Window.in_img1</sink>
 		</Source>
 <!--		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
