@@ -25,9 +25,9 @@
 				</Component>
 				
 				
-				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="1" bump="0">
+<!--				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="1" bump="0">
 					<param name="depth_mode">rawMap</param>
-				</Component>
+				</Component>-->
 				
 			</Executor>
 		</Subtask>

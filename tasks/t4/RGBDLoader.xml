@@ -18,14 +18,14 @@
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
 				<Component name="RGBSequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">./</param>
-					<param name="sequence.pattern">Window0_2014-01-15-00-00-58.png</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
+					<param name="sequence.pattern">.*_rgb.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
 				<Component name="DepthSequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">./</param>
-					<param name="sequence.pattern">Window1_2014-01-15-00-00-58.png</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
+V					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
@@ -42,7 +42,7 @@
 			<Executor name="Exec2" period="0.01">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">2</param>
-					<param name="title">RGB,rawMap</param>
+					<param name="title">RGB,Depth</param>
 				</Component>
 			</Executor>
 		</Subtask>	
