@@ -26,7 +26,7 @@
 
 				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
 					<param name="width">640</param>
-					<param name="height">400</param>
+					<param name="height">480</param>
 <!--	640, 480, 319.5, 239.5, 525, 525
 	CameraInfo(int w = 640, int h = 480, float cx = 320, float cy = 240, float fx = 1, float fy = 1) :
 		m_camera_matrix.at<float>(0, 2) = cx;
@@ -37,11 +37,13 @@
 					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
 				</Component>
 
-				<Component name="Source" type="CameraNUI:CameraNUI" priority="3" bump="0">
+				<Component name="Kinect" type="CameraNUI:CameraNUI" priority="3" bump="0">
 					<param name="sync">1</param>
 				</Component>
 			
-				<Component name="Converter" type="PCL:DepthConverter" priority="4" bump="0">
+				<Component name="Converter1" type="PCL:DepthConverter" priority="4" bump="0">
+				</Component>
+				<Component name="Converter2" type="PCL:DepthConverter" priority="5" bump="0">
 				</Component>
 				
 			</Executor>
@@ -50,9 +52,10 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.1">
 				<Component name="Viewer" type="PCL:XYZCloudViewer" priority="1" bump="0">
+					<param name="title">my XYZ Cloud</param>
+					<param name="count">2</param>
+					<param name="clouds_colours">255 0 0 ; 255 255 255</param>
 				</Component>
-<!--					<param name="count">2</param>
-					<param name="title">RGB,Depth</param> -->
 			</Executor>
 		</Subtask>	
 	
@@ -63,13 +66,20 @@
 	<DataStreams>
 
 		<Source name="DepthSequence.out_img">
-			<sink>Converter.in_depth</sink>
+			<sink>Converter1.in_depth</sink>
+		</Source>		
+		<Source name="Kinect.out_depth">
+			<sink>Converter2.in_depth</sink>
 		</Source>		
 		<Source name="CameraInfo.out_camera_info">
-			<sink>Converter.in_camera_info</sink>	
+			<sink>Converter1.in_camera_info</sink>	
+			<sink>Converter2.in_camera_info</sink>	
 		</Source>
-		<Source name="Converter.out_cloud_xyz">
-			<sink>Viewer.in_cloud_xyz</sink>		
+		<Source name="Converter1.out_cloud_xyz">
+			<sink>Viewer.in_cloud_xyz0</sink>		
+		</Source>
+		<Source name="Converter2.out_cloud_xyz">
+			<sink>Viewer.in_cloud_xyz1</sink>		-
 		</Source>
 	</DataStreams>
 </Task>
