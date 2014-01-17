@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Task>
+	<!-- reference task information -->
+	<Reference>
+		<Author>
+			<name>Tomasz Kornuta</name>
+			<link></link>
+		</Author>
+		
+		<Description>
+			<brief>RANSAC plane fitting</brief>
+			<full>Task realizing selection of the points constituting a plane with the use of Random Sample Consensus.</full>	
+		</Description>
+	</Reference>
+	
+	<!-- task definition -->
+	<Subtasks>
+		<Subtask name="Processing">
+			<Executor name="Exec1"  period="0.1">
+				<Component name="Source" type="PCL:SphereGenerator" priority="1" bump="0">
+					<param name="nr_of_outliers">300</param>
+					<param name="nr_of_points">1000</param>
+					
+				</Component>
+				<Component name="RANSAC" type="PCL:RANSACSphere" priority="2" bump="0">
+				</Component>
+			</Executor>
+		</Subtask>
+		
+		<Subtask name="Visualisation">
+			<Executor name="Exec2" period="0.01">
+				<Component name="Viewer" type="PCL:XYZCloudViewer" priority="1" bump="0">
+					<param name="title">XYZ point cloud with inliers forming a sphere (blue) and outliers (white)</param>
+					<param name="count">2</param>
+					<param name="clouds_colours"> 0 0 255; 255 255 255</param>
+				</Component>
+			</Executor>
+		</Subtask>
+	
+	</Subtasks>
+	
+	<!-- connections between events and handelrs -->
+	<Events>
+	</Events>
+	
+	<!-- pipes connecting datastreams -->
+	<DataStreams>
+		<Source name="Source.out_pcl">
+			<sink>RANSAC.in_pcl</sink>
+		</Source>
+		<Source name="RANSAC.out_inliers">
+			<sink>Viewer.in_cloud_xyz0</sink>
+		</Source>
+		<Source name="RANSAC.out_outliers">
+			<sink>Viewer.in_cloud_xyz1</sink>
+		</Source>
+		</DataStreams>
+</Task>
+
+
+

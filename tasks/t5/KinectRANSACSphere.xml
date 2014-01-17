@@ -9,7 +9,7 @@
 		
 		<Description>
 			<brief>Task performing plane detection</brief>
-			<full>Performs detection of a plane with the use of RANSAC, displays two resulting clouds: inliers and outliers</full>	
+			<full>Performs detection of a sphere with the use of RANSAC, displays two resulting clouds: inliers and outliers</full>	
 		</Description>
 	</Reference>
 	
@@ -24,7 +24,7 @@
 				<Component name="Converter" type="PCL:DepthConverter" priority="2" bump="0">
 				</Component>
 
-				<Component name="RANSAC" type="PCL:RANSACPlane" priority="3" bump="0">
+				<Component name="RANSAC" type="PCL:RANSACSphere" priority="3" bump="0">
 				</Component>
 			</Executor>
 		</Subtask>
@@ -32,9 +32,9 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.5">
 				<Component name="Viewer" type="PCL:XYZCloudViewer" priority="1" bump="0">
-					<param name="title">XYZ point cloud with inliers forming a plane (red) and outliers (white)</param>
+					<param name="title">XYZ point cloud with inliers forming a sphere (blue) and outliers (white)</param>
 					<param name="count">2</param>
-					<param name="clouds_colours">255 0 0 ; 255 255 255</param>
+					<param name="clouds_colours"> 0 0 255; 255 255 255</param>
 				</Component>
 			</Executor>
 		</Subtask>
