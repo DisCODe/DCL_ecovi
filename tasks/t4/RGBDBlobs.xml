@@ -31,7 +31,7 @@
 				</Component>
 				
 				<Component name="Segmentation" type="Depth:Segmentation" priority="4" bump="0">
-					<param name="ang_diff">4.0</param>
+					<param name="ang_diff">50.0</param>
 					<param name="dist_diff">0.4</param>
 					<param name="color_diff">0.1</param>
 					<param name="threshold">1</param>
