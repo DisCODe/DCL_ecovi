@@ -9,7 +9,7 @@
 		
 		<Description>
 			<brief>Simple Kinect viewer</brief>
-			<full>Displays two windows with RGB and depth immges.</full>	
+			<full>Displays RGB image with the associated depth map, allows saving of depth to png file with a proper data format.</full>	
 		</Description>
 	</Reference>
 	
@@ -18,49 +18,34 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="0.1">
 				<Component name="Source" type="CameraNUI:CameraNUI" priority="1" bump="0">
-					<param name="lib">freenect</param>
-					<param name="skip_stop">1</param>
-					<param name="camera_mode">rgb</param>
 					<param name="sync">1</param>
 				</Component>
 				
-				
-<!--				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="1" bump="0">
-					<param name="depth_mode">rawMap</param>
-				</Component>-->
+				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="2" bump="0">
+					<param name="depth_mode">rainbow</param>
+				</Component>
 				
 			</Executor>
 		</Subtask>
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
-				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">RGB,rawMap</param>
+				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
 				</Component>
 			</Executor>
 		</Subtask>	
 	
 	</Subtasks>
-	
-	<!-- connections between events and handelrs -->
-	<Events>
-	</Events>
-	
+		
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">
-			<sink>Window.in_img0</sink>		
+			<sink>RGBDViewer.in_rgb</sink>		
 		</Source>
 		<Source name="Source.out_depth">
-			<sink>Window.in_img1</sink>
-		</Source>
-<!--		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
+			<sink>RGBDViewer.in_depth</sink>		
 		</Source>
-		<Source name="ProcRain.out_depth">
-			<sink>Window.in_img1</sink>		
-		</Source> -->
 	</DataStreams>
 </Task>
 

@@ -32,7 +32,7 @@ V					<param name="sequence.pattern">.*_depth.png</param>
 				 
 				
 				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="1" bump="0">
-					<param name="depth_mode">rawMap</param>
+					<param name="depth_mode">rainbow</param>
 				</Component>
 				
 			</Executor>
@@ -42,7 +42,7 @@ V					<param name="sequence.pattern">.*_depth.png</param>
 			<Executor name="Exec2" period="0.01">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">2</param>
-					<param name="title">RGB,Depth</param>
+					<param name="title">RGB,Depth (Rainbow)</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -59,14 +59,11 @@ V					<param name="sequence.pattern">.*_depth.png</param>
 			<sink>Window.in_img0</sink>		
 		</Source>
 		<Source name="DepthSequence.out_img">
-			<sink>Window.in_img1</sink>
-		</Source>
-<!--		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
 		</Source>
 		<Source name="ProcRain.out_depth">
 			<sink>Window.in_img1</sink>		
-		</Source> -->
+		</Source>
 	</DataStreams>
 </Task>
 

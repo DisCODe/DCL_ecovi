@@ -35,8 +35,10 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">RGB,Rainbow</param>
+					<param name="count">1</param>
+					<param name="title">Rainbow</param>
+				</Component>
+				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -50,13 +52,14 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">
-			<sink>Window.in_img0</sink>		
+			<sink>RGBDViewer.in_rgb</sink>		
 		</Source>
 		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
+			<sink>RGBDViewer.in_depth</sink>
 		</Source>
 		<Source name="ProcRain.out_depth">
-			<sink>Window.in_img1</sink>		
+			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>
 </Task>
