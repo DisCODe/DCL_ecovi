@@ -18,14 +18,16 @@
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
 				<Component name="RGBSequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
+<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> -->
+					<param name="sequence.directory">./</param>
 					<param name="sequence.pattern">.*_rgb.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
 				<Component name="DepthSequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
-V					<param name="sequence.pattern">.*_depth.png</param>
+<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> -->
+					<param name="sequence.directory">./</param>
+					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
@@ -40,9 +42,11 @@ V					<param name="sequence.pattern">.*_depth.png</param>
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.01">
+				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
+				</Component>
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">RGB,Depth (Rainbow)</param>
+					<param name="count">1</param>
+					<param name="title">Rainbow</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -56,13 +60,14 @@ V					<param name="sequence.pattern">.*_depth.png</param>
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="RGBSequence.out_img">
-			<sink>Window.in_img0</sink>		
+			<sink>RGBDViewer.in_rgb</sink>		
 		</Source>
 		<Source name="DepthSequence.out_img">
 			<sink>ProcRain.in_depth</sink>
+			<sink>RGBDViewer.in_depth</sink>		
 		</Source>
 		<Source name="ProcRain.out_depth">
-			<sink>Window.in_img1</sink>		
+			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>
 </Task>

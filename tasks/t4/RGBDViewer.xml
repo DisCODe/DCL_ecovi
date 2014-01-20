@@ -32,6 +32,10 @@
 			<Executor name="Exec2" period="0.01">
 				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
 				</Component>
+				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
+					<param name="count">1</param>
+					<param name="title">Rainbow</param>
+				</Component>
 			</Executor>
 		</Subtask>	
 	
@@ -45,6 +49,9 @@
 		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
 			<sink>RGBDViewer.in_depth</sink>		
+		</Source>
+		<Source name="ProcRain.out_depth">
+			<sink>Window.in_img</sink>		
 		</Source>
 	</DataStreams>
 </Task>
