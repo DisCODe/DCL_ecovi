@@ -44,7 +44,7 @@
 			<Executor name="Exec2" period="0.01">
 				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
 				</Component>
-				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
+				<Component name="Window" type="CvBasic:CvWindow" priority="2" bump="0">
 					<param name="count">1</param>
 					<param name="title">Rainbow</param>
 				</Component>
