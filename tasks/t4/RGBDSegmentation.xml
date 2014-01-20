@@ -18,9 +18,7 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="2">
 				<Component name="Source" type="CameraNUI:CameraNUI" priority="1" bump="0">
-					<param name="lib">freenect</param>
 					<param name="skip_stop">1</param>
-					<param name="camera_mode">rgb</param>
 				</Component>
 				
 				<Component name="DepthConverter" type="CameraNUI:DepthConverter" priority="2" bump="0">
@@ -42,7 +40,7 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.2">
-				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="5">
+				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">3</param>
 					<param name="title">RGB,Normals,Segments</param>
 				</Component>
