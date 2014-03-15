@@ -18,8 +18,8 @@
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
 				<Component name="DepthSequence" type="CvBasic:Sequence" priority="1" bump="0">
-<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> -->
-					<param name="sequence.directory">./</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/apple/</param>
+<!--					<param name="sequence.directory">./</param> -->
 					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
