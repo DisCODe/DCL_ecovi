@@ -9,7 +9,7 @@
 		
 		<Description>
 			<brief>Simple Kinect viewer</brief>
-			<full>Displays RGB image with the associated depth map, allows saving of depth to png file with a proper data format.</full>	
+			<full>Displays RGB image with the associated depth map, allows saving of both color and depth to png file with a proper data format.</full>	
 		</Description>
 	</Reference>
 	
@@ -28,30 +28,44 @@
 			</Executor>
 		</Subtask>
 		
-		<Subtask name="Visualisation">
-			<Executor name="Exec2" period="0.01">
-				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
-				</Component>
+		<Subtask name="Visualization">
+			<Executor name="Exec2" period="0.1">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">1</param>
-					<param name="title">Rainbow</param>
+					<param name="count">3</param>
+					<param name="title">RGB,Depth,Rainbow</param>
 				</Component>
 			</Executor>
 		</Subtask>	
 	
+		<Subtask name="Writing">
+			<Executor name="Exec3" period="0.1">
+				<Component name="ImageWriter" type="CvBasic:ImageWriter" priority="1" bump="0">
+					<param name="directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
+					<param name="count">2</param>
+					<param name="digits">1</param>
+					<param name="base_name">rgb,depth</param>
+					<param name="format">png,png</param>
+					<param name="mode.auto_trigger">0</param>
+				</Component>
+			</Executor>
+		</Subtask>	
+
+
 	</Subtasks>
 		
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">
-			<sink>RGBDViewer.in_rgb</sink>		
+			<sink>Window.in_img0</sink>		
+			<sink>ImageWriter.in_img0</sink>		
 		</Source>
 		<Source name="Source.out_depth">
 			<sink>ProcRain.in_depth</sink>
-			<sink>RGBDViewer.in_depth</sink>		
+			<sink>Window.in_img1</sink>		
+			<sink>ImageWriter.in_img1</sink>		
 		</Source>
 		<Source name="ProcRain.out_depth">
-			<sink>Window.in_img</sink>		
+			<sink>Window.in_img2</sink>		
 		</Source>
 	</DataStreams>
 </Task>

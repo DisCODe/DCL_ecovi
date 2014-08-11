@@ -8,7 +8,7 @@
 		</Author>
 		
 		<Description>
-			<brief>Simple Kinect viewer</brief>
+			<brief>Simple RGB-D sequence viewer</brief>
 			<full>Displays two windows with RGB and depth immges.</full>	
 		</Description>
 	</Reference>
@@ -40,13 +40,11 @@
 			</Executor>
 		</Subtask>
 		
-		<Subtask name="Visualisation">
+		<Subtask name="Visualization">
 			<Executor name="Exec2" period="0.01">
-				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
-				</Component>
 				<Component name="Window" type="CvBasic:CvWindow" priority="2" bump="0">
-					<param name="count">1</param>
-					<param name="title">Rainbow</param>
+					<param name="count">3</param>
+					<param name="title">RGB,Depth,Rainbow</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -56,14 +54,14 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="RGBSequence.out_img">
-			<sink>RGBDViewer.in_rgb</sink>		
+			<sink>Window.in_img0</sink>		
 		</Source>
 		<Source name="DepthSequence.out_img">
 			<sink>ProcRain.in_depth</sink>
-			<sink>RGBDViewer.in_depth</sink>		
+			<sink>Window.in_img1</sink>		
 		</Source>
 		<Source name="ProcRain.out_depth">
-			<sink>Window.in_img</sink>		
+			<sink>Window.in_img2</sink>		
 		</Source>
 	</DataStreams>
 </Task>

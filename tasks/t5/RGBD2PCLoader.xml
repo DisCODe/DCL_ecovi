@@ -17,15 +17,25 @@
 	<Subtasks>
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
-				<Component name="DepthSequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/apple/</param>
+				<Component name="RGBSequence" type="CvBasic:Sequence" priority="1" bump="0">
+					<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>
+<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/apple/</param>-->
+<!--					<param name="sequence.directory">./</param> -->
+					<param name="sequence.pattern">.*_color.png</param>
+                                        <param name="mode.loop">1</param>
+                                        <param name="mode.iterate">0</param>
+				</Component>
+
+				<Component name="DepthSequence" type="CvBasic:Sequence" priority="2" bump="0">
+					<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>
+<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/apple/</param>-->
 <!--					<param name="sequence.directory">./</param> -->
 					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
 
-				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
+				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="3">
 					<param name="width">640</param>
 					<param name="height">480</param>
 					<param name="camera_matrix">525 0 319.5 ; 0 525 239.5 ; 0 0 1</param>
@@ -40,7 +50,7 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.1">
-				<Component name="Viewer" type="PCL:XYZCloudViewer" priority="1" bump="0">
+				<Component name="Viewer" type="PCL:CloudViewer" priority="1" bump="0">
 					<param name="title">XYZ point cloud readed from RGB-D file</param>
 				</Component>
 			</Executor>
@@ -55,11 +65,14 @@
 		<Source name="DepthSequence.out_img">
 			<sink>Converter.in_depth</sink>
 		</Source>		
+		<Source name="RGBSequence.out_img">
+			<sink>Converter.in_color</sink>
+		</Source>		
 		<Source name="CameraInfo.out_camera_info">
 			<sink>Converter.in_camera_info</sink>	
 		</Source>
-		<Source name="Converter.out_cloud_xyz">
-			<sink>Viewer.in_cloud_xyz</sink>		
+		<Source name="Converter.out_cloud_xyzrgb">
+			<sink>Viewer.in_cloud_xyzrgb</sink>		
 		</Source>
 	</DataStreams>
 </Task>
