@@ -5,13 +5,13 @@
 			<name>Tomasz Kornuta</name>
 			<link></link>
 		</Author>
-		
+
 		<Description>
 			<brief>ecovi:t2/SIFT</brief>
-			<full>Task presnting the results of operation of the Scale Invariant Feature Transform (SIFT) </full>	
+			<full>Task presnting the results of operation of the Scale Invariant Feature Transform (SIFT) </full>
 		</Description>
 	</Reference>
-	
+
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Main">
@@ -20,9 +20,9 @@
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
-					<param name="mode.iterate">0</param>
+					<param name="mode.auto_next_image">0</param>
 				</Component>
-				
+
 				<Component name="ColorConverter" type="CvBasic:CvColorConv" priority="2" bump="0">
 					<param name="type">BGR2GRAY</param>
 				</Component>
@@ -37,22 +37,22 @@
 					<param name="title">SIFT</param>
 				</Component>
 			</Executor>
-		</Subtask>	
-	
+		</Subtask>
+
 	</Subtasks>
-	
+
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Sequence.out_img">
-			<sink>ColorConverter.in_img</sink>		
-			<sink>Window.in_img0</sink>		
+			<sink>ColorConverter.in_img</sink>
+			<sink>Window.in_img0</sink>
 		</Source>
 		<Source name="ColorConverter.out_img">
-			<sink>SIFT.in_img</sink>		
+			<sink>SIFT.in_img</sink>
 		</Source>
-				
+
 		<Source name="SIFT.out_features">
-			<sink>Window.in_draw0</sink>		
+			<sink>Window.in_draw0</sink>
 		</Source>
 	</DataStreams>
 </Task>

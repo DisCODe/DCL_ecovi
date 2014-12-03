@@ -5,13 +5,13 @@
 			<name>Tomasz Kornuta</name>
 			<link></link>
 		</Author>
-		
+
 		<Description>
 			<brief>ecovi:t2/Edge1D</brief>
-			<full>Task performing the extraction of vertical or horizontal edges</full>	
+			<full>Task performing the extraction of vertical or horizontal edges</full>
 		</Description>
 	</Reference>
-	
+
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Main">
@@ -20,15 +20,14 @@
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/opencv_classics/</param>
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="mode.loop">1</param>
-					<param name="mode.iterate">0</param>
-					<param name="mode.triggered">0</param>
+					<param name="mode.auto_next_image">0</param>
 				</Component>
-				
+
 				<Component name="VertEdge" type="CvBasic:CvFilter2D" priority="2" bump="0">
 					<param name="kernel">1 1 1; 0 0 0; -1 -1 -1</param>
 					<param name="norm">1</param>
 				</Component>
-				
+
 				<Component name="HoriEdge" type="CvBasic:CvFilter2D" priority="3" bump="0">
 					<param name="kernel">1 0 -1; 1 0 -1; 1 0 -1</param>
 					<param name="norm">1</param>
@@ -37,7 +36,7 @@
 				<Component name="Sum" type="CvBasic:Sum" priority="4" bump="0">
 					<param name="norm">0.5</param>
 				</Component>
-				
+
 			</Executor>
 
 			<Executor name="Visualization" period="0.2">
@@ -46,30 +45,30 @@
 					<param name="title">Original, Vertical, Horizontal, Result</param>
 				</Component>
 			</Executor>
-		</Subtask>	
-	
+		</Subtask>
+
 	</Subtasks>
-	
+
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Sequence.out_img">
-			<sink>VertEdge.in_img</sink>		
-			<sink>HoriEdge.in_img</sink>		
-			<sink>Window.in_img0</sink>		
+			<sink>VertEdge.in_img</sink>
+			<sink>HoriEdge.in_img</sink>
+			<sink>Window.in_img0</sink>
 		</Source>
-		
+
 		<Source name="VertEdge.out_img">
-			<sink>Sum.in_img1</sink>		
-			<sink>Window.in_img1</sink>		
+			<sink>Sum.in_img1</sink>
+			<sink>Window.in_img1</sink>
 		</Source>
-		
+
 		<Source name="HoriEdge.out_img">
-			<sink>Sum.in_img2</sink>		
-			<sink>Window.in_img2</sink>		
+			<sink>Sum.in_img2</sink>
+			<sink>Window.in_img2</sink>
 		</Source>
-		
+
 		<Source name="Sum.out_img">
-			<sink>Window.in_img3</sink>		
+			<sink>Window.in_img3</sink>
 		</Source>
 	</DataStreams>
 </Task>

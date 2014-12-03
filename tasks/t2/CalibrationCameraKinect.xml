@@ -17,9 +17,6 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="0.1">
 				<Component name="Source" type="CameraNUI:CameraNUI" priority="1" bump="0">
-					<param name="lib">freenect</param>
-					<param name="skip_stop">1</param>
-					<param name="camera_mode">rgb</param>
 					<param name="sync">1</param>
 				</Component>
 								
@@ -38,10 +35,10 @@
 				</Component>
 				
 				<Component name="Chessboard" type="CvBasic:CvFindChessboardCorners" priority="5" bump="0">
-					<param name="chessboard.width">7</param>
-					<param name="chessboard.height">6</param>
-					<param name="chessboard.square_width">0.05</param>
-					<param name="chessboard.square_height">0.05</param>
+					<param name="chessboard.board_width">6</param>
+					<param name="chessboard.board_height">5</param>
+					<param name="chessboard.square_width">0.02</param>
+					<param name="chessboard.square_height">0.02</param>
 				</Component>
 				
 				<Component name="Calib" type="CvBasic:Calib" priority="6" bump="1">
@@ -70,9 +67,9 @@
 			<sink>ColorConv.in_img</sink>
 			<sink>Window.in_img0</sink>		
 		</Source>
-		<Source name="CameraInfo.out_camerainfo">
-			<sink>Undistort.in_camerainfo</sink>
-			<sink>Calib.in_camerainfo</sink>
+		<Source name="CameraInfo.out_camera_info">
+			<sink>Undistort.in_camera_info</sink>
+			<sink>Calib.in_camera_info</sink>
 		</Source>
 
 		<Source name="ColorConv.out_img">
@@ -80,10 +77,10 @@
 		</Source>
 		<Source name="Chessboard.out_chessboard">
 			<sink>Window.in_draw0</sink>
-			<sink>Calib.in_chessboard</sink>		
+			<sink>Calib.in_object3d</sink>		
 		</Source>
-		<Source name="Calib.out_camerainfo">
-			<sink>CameraInfo.in_camerainfo</sink>
+		<Source name="Calib.out_camera_info">
+			<sink>CameraInfo.in_camera_info</sink>
 		</Source>
 		<Source name="Undistort.out_img">
 			<sink>Window.in_img1</sink>		

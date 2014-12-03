@@ -20,13 +20,13 @@
 					<param name="sequence.pattern">.*\.jpg</param>
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/calibration_opencv/</param>
 					<param name="mode.loop">0</param>
-					<param name="mode.auto_trigger">0</param>
+					<param name="mode.auto_next_image">0</param>
 				</Component>
 								
 				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
 					<param name="width">768</param>
 					<param name="height">576</param>
-					<param name="camera_matrix">1 0 0 ; 0 1 0 ; 0 0 1</param>
+					<param name="camera_matrix">1 0 384 ; 0 1 288 ; 0 0 1</param>
 					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
 				</Component>
 				
