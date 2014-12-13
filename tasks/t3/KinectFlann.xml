@@ -18,16 +18,13 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1"  period="1">
 				<Component name="Source1" type="CameraNUI:CameraNUI" priority="1" bump="0">
-					<param name="lib">freenect</param>
-					<param name="skip_stop">1</param>
-					<param name="camera_mode">rgb</param>
 					<param name="sync">1</param>
 				</Component>
 				<Component name="Source0" type="CvBasic:Sequence" priority="2" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/matching/</param>
-					<param name="sequence.pattern">pratchett.png</param>
-					<param name="mode.loop">0</param>
-					<param name="mode.iterate">0</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/tea_covers/</param>
+					<param name="sequence.pattern">.*jpg</param>
+					<param name="mode.loop">1</param>
+					<param name="mode.auto_next_image">0</param>
 				</Component>
 				
 				<Component name="ClrCnv0" type="CvBasic:CvColorConv" priority="3" bump="0">
