@@ -18,21 +18,19 @@
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
 				<Component name="RGBSequence" type="CvBasic:Sequence" priority="1" bump="0">
-<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> -->
-					<param name="sequence.directory">./</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> 
 					<param name="sequence.pattern">.*_rgb.png</param>
-                                        <param name="mode.loop">1</param>
-                                        <param name="mode.iterate">0</param>
+                    <param name="mode.loop">1</param>
+					<param name="mode.auto_next_image">0</param>
 				</Component>
+
 				<Component name="DepthSequence" type="CvBasic:Sequence" priority="2" bump="0">
-<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> -->
-					<param name="sequence.directory">./</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
 					<param name="sequence.pattern">.*_depth.png</param>
-                                        <param name="mode.loop">1</param>
-                                        <param name="mode.iterate">0</param>
+                    <param name="mode.loop">1</param>
+					<param name="mode.auto_next_image">0</param>
 				</Component>
-				 
-				
+			
 				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="3" bump="0">
 					<param name="depth_mode">rainbow</param>
 				</Component>

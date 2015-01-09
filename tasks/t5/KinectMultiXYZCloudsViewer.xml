@@ -28,8 +28,7 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.3">
-				<Component name="Viewer" type="PCL:XYZCloudViewer" priority="1" bump="0">
-					<param name="title">XYZ point cloud from Kinect</param>
+				<Component name="Viewer" type="PCL:MultiXYZCloudsViewer" priority="1" bump="0">
 				</Component>
 			</Executor>
 
