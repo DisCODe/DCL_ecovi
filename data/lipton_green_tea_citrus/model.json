@@ -1,0 +1,16 @@
+{
+    "name": "lipton_green_tea_citrus",
+    "left": "left.jpg",
+    "right": "right.jpg",
+    "front": "front.jpg",
+    "back": "back.jpg",
+    "top": "top.jpg",
+    "bottom": "bottom.jpg",
+    "_comment": "in mm",
+    "_comment": "width (left-right distance)",
+    "width": "150",
+    "_comment": "height (top-bottom distance)",
+    "height": "60",
+    "_comments": "depth (front-back distance)",
+    "depth": "40"
+}
