@@ -31,10 +31,10 @@
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.5">
-				<Component name="Viewer" type="PCL:XYZCloudViewer" priority="1" bump="0">
+				<Component name="Viewer" type="PCL:MultiXYZCloudsViewer" priority="1" bump="0">
 					<param name="title">XYZ point cloud with inliers forming a plane (red) and outliers (white)</param>
 					<param name="count">2</param>
-					<param name="clouds_colours">255 0 0 ; 255 255 255</param>
+					<param name="clouds_colours">0 0 255 ; 255 255 255</param>
 				</Component>
 			</Executor>
 		</Subtask>
