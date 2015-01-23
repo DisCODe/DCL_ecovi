@@ -22,6 +22,16 @@
 				
 				<Component name="Converter" type="PCL:DepthConverter" priority="2" bump="0">
 				</Component>
+
+				<Component name="ImageWriter" type="CvBasic:ImageWriter" priority="1" bump="0">
+					<param name="directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
+					<param name="count">2</param>
+					<param name="digits">1</param>
+					<param name="base_name">rgb,depth</param>
+					<param name="format">png,png</param>
+					<param name="mode.auto_trigger">0</param>
+				</Component>
+
 			</Executor>
 		</Subtask>
 		
@@ -40,15 +50,20 @@
 	
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
-		<Source name="Source.out_depth">
-			<sink>Converter.in_depth</sink>
-		</Source>
 		<Source name="Source.out_img">
 			<sink>Converter.in_color</sink>
+			<sink>ImageWriter.in_img0</sink>		
 		</Source>
+
+		<Source name="Source.out_depth">
+			<sink>Converter.in_depth</sink>
+			<sink>ImageWriter.in_img1</sink>		
+		</Source>
+
 		<Source name="Source.out_camera_info">
 			<sink>Converter.in_camera_info</sink>	
 		</Source>
+
 		<Source name="Converter.out_cloud_xyzrgb">
 			<sink>Window.in_cloud_xyzrgb</sink>		
 		</Source>
