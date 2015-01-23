@@ -17,21 +17,24 @@
 	<Subtasks>
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
-				<Component name="RGBSequence" type="CvBasic:Sequence" priority="1" bump="0">
+				<Component name="Trigger" type="CvBasic:Trigger" priority="1" bump="0">
+				</Component>
+
+				<Component name="RGBSequence" type="CvBasic:Sequence" priority="2" bump="0">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> 
 					<param name="sequence.pattern">.*_rgb.png</param>
-                    <param name="mode.loop">1</param>
+		                        <param name="mode.loop">1</param>
 					<param name="mode.auto_next_image">0</param>
 				</Component>
 
-				<Component name="DepthSequence" type="CvBasic:Sequence" priority="2" bump="0">
+				<Component name="DepthSequence" type="CvBasic:Sequence" priority="3" bump="0">
 					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param>
 					<param name="sequence.pattern">.*_depth.png</param>
-                    <param name="mode.loop">1</param>
+			                <param name="mode.loop">1</param>
 					<param name="mode.auto_next_image">0</param>
 				</Component>
 			
-				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="3" bump="0">
+				<Component name="ProcRain" type="CameraNUI:DepthConverter" priority="4" bump="0">
 					<param name="depth_mode">rainbow</param>
 				</Component>
 				
@@ -51,6 +54,11 @@
 		
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
+		<Source name="Trigger.out_trigger">
+			<sink>RGBSequence.in_next_image_trigger</sink>
+			<sink>DepthSequence.in_next_image_trigger</sink>
+		</Source>
+
 		<Source name="RGBSequence.out_img">
 			<sink>Window.in_img0</sink>		
 		</Source>

@@ -8,8 +8,8 @@
 		</Author>
 		
 		<Description>
-			<brief>Displays point clouds generated from depth images loaded from files.</brief>
-			<full>Loads depth images and displays them in the from of poin clouds.</full>	
+			<brief>Displays point clouds generated from colour and depth images loaded from files.</brief>
+			<full>Loads colour and depth images and displays them in the form of poin clouds.</full>	
 		</Description>
 	</Reference>
 	
@@ -17,32 +17,33 @@
 	<Subtasks>
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
-				<Component name="RGBSequence" type="CvBasic:Sequence" priority="1" bump="0">
-					<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>
-<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/apple/</param>-->
-<!--					<param name="sequence.directory">./</param> -->
-					<param name="sequence.pattern">.*_color.png</param>
+				<Component name="Trigger" type="CvBasic:Trigger" priority="1" bump="0">
+				</Component>
+
+				<Component name="RGBSequence" type="CvBasic:Sequence" priority="2" bump="0">
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd1/</param> 
+					<!--<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>-->
+					<param name="sequence.pattern">.*_rgb.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
 
-				<Component name="DepthSequence" type="CvBasic:Sequence" priority="2" bump="0">
-					<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>
-<!--					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/apple/</param>-->
-<!--					<param name="sequence.directory">./</param> -->
+				<Component name="DepthSequence" type="CvBasic:Sequence" priority="3" bump="0">
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd1/</param> 
+					<!--<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>-->
 					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
                                         <param name="mode.iterate">0</param>
 				</Component>
 
-				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="3">
+				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="4">
 					<param name="width">640</param>
 					<param name="height">480</param>
 					<param name="camera_matrix">525 0 319.5 ; 0 525 239.5 ; 0 0 1</param>
 					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
 				</Component>
 
-				<Component name="Converter" type="PCL:DepthConverter" priority="4" bump="0">
+				<Component name="Converter" type="PCL:DepthConverter" priority="5" bump="0">
 				</Component>
 				
 			</Executor>
@@ -51,7 +52,7 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.1">
 				<Component name="Viewer" type="PCL:CloudViewer" priority="1" bump="0">
-					<param name="title">XYZ point cloud readed from RGB-D file</param>
+					<param name="title">Pointcloud readed from RGB-D file</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -61,6 +62,10 @@
 	
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
+		<Source name="Trigger.out_trigger">
+			<sink>RGBSequence.in_next_image_trigger</sink>
+			<sink>DepthSequence.in_next_image_trigger</sink>
+		</Source>
 
 		<Source name="DepthSequence.out_img">
 			<sink>Converter.in_depth</sink>
