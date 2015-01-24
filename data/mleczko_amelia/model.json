@@ -1,0 +1,16 @@
+{
+    "name": "box",
+    "left": "IMG_2550.jpg",
+    "right": "IMG_2552.jpg",
+    "front": "IMG_2549.jpg",
+    "back": "IMG_2551.jpg",
+    "top": "IMG_2546.jpg",
+    "bottom": "IMG_2547.jpg",
+    "_comment": "in mm",
+    "_comment": "width (left-right distance)",
+    "width": "160",
+    "_comment": "height (top-bottom distance)",
+    "height": "55",
+    "_comments": "depth (front-back distance)",
+    "depth": "155"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "oreo_biscuits",
+    "left": "left.jpg",
+    "right": "right.jpg",
+    "front": "front.jpg",
+    "back": "back.jpg",
+    "top": "top.jpg",
+    "bottom": "bottom.jpg",
+    "_comment": "in mm",
+    "_comment": "width (left-right distance)",
+    "width": "200",
+    "_comment": "height (top-bottom distance)",
+    "height": "105",
+    "_comments": "depth (front-back distance)",
+    "depth": "30"
+}
