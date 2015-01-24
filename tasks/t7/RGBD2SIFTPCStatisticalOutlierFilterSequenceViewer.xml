@@ -1,0 +1,108 @@
+<Task>
+	<!-- reference task information -->
+	<Reference>
+		<Author>
+			<name>Tomasz Kornuta</name>
+			<link></link>
+		</Author>
+		
+		<Description>
+			<brief>Loads a sequence of rgb and depth files, displays it in form of XYZRGB and XYZSIFT point clouds, additionaly filtered with statistical outlier</brief>
+			<full>Task usefull for viewing of sequences of images for the purpose of their merging</full>	
+		</Description>
+	</Reference>
+	
+	<!-- task definition -->
+	<Subtasks>
+		<Subtask name="Main">
+			<Executor name="Processing"  period="1">
+                                <Component name="Trigger" type="CvBasic:Trigger" priority="1" bump="0">
+				</Component>
+				<Component name="SequenceRGB" type="CvBasic:Sequence" priority="2" bump="0">
+                                        <param name="sequence.directory">%[TASK_LOCATION]%/../../data/table</param>
+                                        <param name="sequence.pattern">.*\_rgb.png</param>
+                                        <param name="mode.loop">0</param>
+                                        <param name="mode.auto_streaming">1</param>
+                                        <param name="mode.auto_next_image">0</param>
+				</Component>
+				<Component name="SequenceDepth" type="CvBasic:Sequence" priority="3" bump="0">
+                                        <param name="sequence.directory">%[TASK_LOCATION]%/../../data/table</param>
+                                        <param name="sequence.pattern">.*\_depth\.png</param>
+                                        <param name="mode.loop">0</param>
+                                        <param name="mode.auto_streaming">1</param>
+                                        <param name="mode.auto_next_image">0</param>
+                                </Component>
+                                <Component name="SIFT" type="CvBasic:CvSIFT" priority="4" bump="0">
+				</Component>
+
+				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="5">
+					<param name="width">640</param>
+					<param name="height">480</param>
+					<param name="camera_matrix">525 0 319.5 ; 0 525 239.5 ; 0 0 1</param>
+					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
+				</Component>
+
+                                <Component name="Converter" type="PCL:DepthConverter" priority="6" bump="0">
+				</Component>
+
+                                <Component name="FeatureCloudConverter" type="SIFTObjectModel:FeatureCloudConverter" priority="7" bump="0">
+				</Component>
+
+				<Component name="StatisticalOutlierRemoval" type="PCL:StatisticalOutlierRemoval" priority="8" bump="1">
+				</Component>
+
+			</Executor>
+
+			<Executor name="Visualization" period="0.1">
+                                <Component name="Window" type="PCL:CloudViewer" priority="1" bump="0">
+		                    <param name="sift.size">5</param>
+                                </Component>
+			</Executor>
+		</Subtask>	
+	
+	</Subtasks>
+	
+	<!-- pipes connecting datastreams -->
+	<DataStreams>
+		<Source name="Trigger.out_trigger">
+                        <sink>SequenceRGB.in_next_image_trigger</sink>
+                        <sink>SequenceDepth.in_next_image_trigger</sink>
+		</Source>
+		<Source name="SequenceRGB.out_img">
+			<sink>SIFT.in_img</sink>
+			<sink>Converter.in_color</sink>
+		</Source>
+		<Source name="SequenceDepth.out_img">	
+                        <sink>Converter.in_depth</sink>
+                        <sink>FeatureCloudConverter.in_depth</sink>
+                </Source>
+		<Source name="SIFT.out_descriptors">
+			<sink>FeatureCloudConverter.in_descriptors</sink>	
+		</Source>
+		<Source name="SIFT.out_features">
+			<sink>FeatureCloudConverter.in_features</sink>	
+		</Source>	
+
+		<Source name="CameraInfo.out_camera_info">
+			<sink>Converter.in_camera_info</sink>	
+			<sink>FeatureCloudConverter.in_camera_info</sink>	
+		</Source>
+
+		<Source name="Converter.out_cloud_xyzrgb">
+			<sink>StatisticalOutlierRemoval.in_cloud_xyzrgb</sink>
+		</Source>
+
+		<Source name="FeatureCloudConverter.out_cloud_xyzsift">
+<!--                        <sink>Window.in_cloud_xyzsift</sink>-->
+		</Source>
+
+		<Source name="StatisticalOutlierRemoval.out_cloud_xyzrgb">
+                        <sink>Window.in_cloud_xyzrgb</sink>
+		</Source>
+				
+	</DataStreams>
+</Task>
+
+
+
+

@@ -1,0 +1,15 @@
+{
+
+    "name": "dlinkgo",
+
+    "left": "left.jpg",
+    "right": "right.jpg",
+    "front": "front.jpg",
+    "back": "back.jpg",
+    "top": "top.jpg",
+    "bottom": "bottom.jpg",
+
+    "width": "205",
+    "height": "135",
+    "depth": "105"
+}
