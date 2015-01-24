@@ -60,7 +60,7 @@
                                 <Component name="Generator" type="SIFTObjectModel:ClosedCloudMerge" priority="11" bump="1">
                                         <param name="LUM.max_iterations">5</param>
                                         <param name="LUM.correspondence_threshold">10</param>
-                                        <param name="LUM.use_refinement">0</param>
+                                        <param name="LUM.use_refinement">1</param>
                                 </Component>
 
 <!--				<Component name="OutputVoxelGrid" type="PCL:VoxelGrid" priority="12" bump="0">
