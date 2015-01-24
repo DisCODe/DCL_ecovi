@@ -8,31 +8,25 @@
 
 		<Description>
 			<brief>ecovi:t2/SIFT</brief>
-			<full>Task presnting the results of operation of the Scale Invariant Feature Transform (SIFT) </full>
+			<full>Task presenting the results of operation of the Scale Invariant Feature Transform (SIFT) </full>
 		</Description>
 	</Reference>
 
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Main">
-			<Executor name="Processing"  period="1">
+			<Executor name="Processing"  period="0.5">
 				<Component name="Sequence" type="CvBasic:Sequence" priority="1" bump="1">
-					<param name="sequence.directory">/home/tkornuta/discode_ecovi/DCL/TexturedSolidGeneration/data/lipton_green_tea_citrus/</param>
-					<param name="sequence.pattern">.*\.jpg</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/matching/</param>
+					<param name="sequence.pattern">.*\.png</param>
 					<param name="mode.loop">1</param>
 					<param name="mode.auto_next_image">0</param>
 				</Component>
 
-				<Component name="ColorConverter" type="CvBasic:CvColorConv" priority="2" bump="0">
-					<param name="type">BGR2GRAY</param>
+				<Component name="SIFT" type="CvBasic:CvSIFT" priority="2" bump="0">
 				</Component>
 
-				<Component name="SIFT" type="CvBasic:CvSIFT" priority="4" bump="0">
-				</Component>
-			</Executor>
-
-			<Executor name="Visualization" period="0.2">
-				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
+				<Component name="Window" type="CvBasic:CvWindow" priority="3" bump="0">
 					<param name="count">1</param>
 					<param name="title">SIFT</param>
 				</Component>
@@ -44,11 +38,8 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Sequence.out_img">
-			<sink>ColorConverter.in_img</sink>
-			<sink>Window.in_img0</sink>
-		</Source>
-		<Source name="ColorConverter.out_img">
 			<sink>SIFT.in_img</sink>
+			<sink>Window.in_img0</sink>
 		</Source>
 
 		<Source name="SIFT.out_features">

@@ -18,7 +18,7 @@
 
 			<Executor name="Processing"  period="1">
 				<Component name="SOMJSONReader" type="SIFTObjectModel:SOMJSONReader" priority="1" bump="0">
-                    <param name="filenames">%[TASK_LOCATION]%/../../data/lipton_green_tea_citrus_model.json</param>
+        		            <param name="filenames">%[TASK_LOCATION]%/../../data/lipton_green_tea_citrus/lipton_som.json</param>
 				</Component>
 				<Component name="Source" type="CameraNUI:CameraNUI" priority="2" bump="0">
 				</Component>

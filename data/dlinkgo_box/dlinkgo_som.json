@@ -1,0 +1,9 @@
+{  
+  "name": "dlinkgo_kinect",
+    "type": "SIFTObjectModel",
+
+    "mean_viewpoint_features_number": "155",
+
+    "cloud_xyzsift": "dlinkgo_xyzsift.pcd",
+    "cloud_xyzrgb": "dlinkgo_xyzrgb.pcd"
+}
