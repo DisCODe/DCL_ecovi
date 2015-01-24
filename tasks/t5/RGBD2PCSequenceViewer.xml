@@ -25,7 +25,7 @@
 					<!--<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>-->
 					<param name="sequence.pattern">.*_rgb.png</param>
                                         <param name="mode.loop">1</param>
-                                        <param name="mode.iterate">0</param>
+                                        <param name="mode.auto_next_image">0</param>
 				</Component>
 
 				<Component name="DepthSequence" type="CvBasic:Sequence" priority="3" bump="0">
@@ -33,7 +33,7 @@
 					<!--<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>-->
 					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
-                                        <param name="mode.iterate">0</param>
+                                        <param name="mode.auto_next_image">0</param>
 				</Component>
 
 				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="4">

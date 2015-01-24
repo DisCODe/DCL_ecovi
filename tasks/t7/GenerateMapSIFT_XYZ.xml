@@ -2,13 +2,13 @@
 	<!-- reference task information -->
 	<Reference>
 		<Author>
-			<name>Michał Laszkowski</name>
+			<name>Tomasz Kornuta</name>
 			<link></link>
 		</Author>
 		
 		<Description>
-			<brief>Generates SOM and stores it in PCD file</brief>
-			<full>Loads a sequence of object views and joins them into SIFT object model (SOM)</full>	
+			<brief>Generates a XYZRGB map on the basis of a sequence of rgb and depth images</brief>
+			<full></full>	
 		</Description>
 	</Reference>
 	
@@ -23,14 +23,14 @@
                                         <param name="sequence.pattern">.*\_rgb.png</param>
                                         <param name="mode.loop">0</param>
                                         <param name="mode.auto_streaming">0</param>
-                                        <param name="mode.auto_trigger">1</param>
+                                        <param name="mode.auto_next_image">1</param>
 				</Component>
 				<Component name="SequenceDepth" type="CvBasic:Sequence" priority="3" bump="0">
                                         <param name="sequence.directory">/home/discode/012</param>
                                         <param name="sequence.pattern">.*\_xyz\.yml</param>
                                         <param name="mode.loop">0</param>
                                         <param name="mode.auto_streaming">0</param>
-                                        <param name="mode.auto_trigger">1</param>
+                                        <param name="mode.auto_next_image">1</param>
                                 </Component>
                                 <Component name="SIFT" type="CvBasic:CvSIFT" priority="6" bump="0">
 				</Component>
@@ -83,7 +83,7 @@
 		</Source>
 		<Source name="SequenceRGB.out_img">
 			<sink>SIFT.in_img</sink>
-                        <sink>Converter.in_rgb_stereo</sink>
+			<sink>Converter.in_color</sink>
 		</Source>
 		<Source name="SequenceDepth.out_img">	
                         <sink>Converter.in_depth_xyz</sink>
