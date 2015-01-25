@@ -17,11 +17,11 @@
 		<Subtask name="Main">
 
 			<Executor name="Processing"  period="0.1">
-				<Component name="SOMJSONReader" type="SIFTObjectModel:SOMJSONReader" priority="1" bump="0">
+				<Component name="SOMJSONReader" type="SIFTObjectModel:SOMJSONReader" priority="1" bump="1">
         		            <param name="filenames">%[TASK_LOCATION]%/../../data/lipton_green_tea_citrus/lipton_som.json;%[TASK_LOCATION]%/../../data/dlinkgo_box/dlinkgo_som.json</param>
 				</Component>
 
-				<Component name="SOMs2PC" type="SIFTObjectModel:SOMs2PC" priority="2" bump="0">
+				<Component name="SOMs2PC" type="SIFTObjectModel:SOMs2PC" priority="2" bump="1">
 		                    <param name="model_number">0</param>
 				</Component>
 		        </Executor>
