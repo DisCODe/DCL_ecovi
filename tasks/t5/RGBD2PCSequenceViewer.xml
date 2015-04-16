@@ -21,7 +21,7 @@
 				</Component>
 
 				<Component name="RGBSequence" type="CvBasic:Sequence" priority="2" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd1/</param> 
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> 
 					<!--<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>-->
 					<param name="sequence.pattern">.*_rgb.png</param>
                                         <param name="mode.loop">1</param>
@@ -29,7 +29,7 @@
 				</Component>
 
 				<Component name="DepthSequence" type="CvBasic:Sequence" priority="3" bump="0">
-					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd1/</param> 
+					<param name="sequence.directory">%[TASK_LOCATION]%/../../data/rgbd/</param> 
 					<!--<param name="sequence.directory">/home/tkornuta/Objects/cereal_box_1_co5/</param>-->
 					<param name="sequence.pattern">.*_depth.png</param>
                                         <param name="mode.loop">1</param>
